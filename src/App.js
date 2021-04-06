@@ -12,7 +12,6 @@ import PrivateRouter from "./components/PrivateRouter";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import UserHomePage from "./pages/UserHomePage"
 import AdminPanel from "./pages/AdminPanel";
-import Register from "./pages/Register"
 import Houses from "./pages/Houses";
 import CreateHouse from "./pages/AddHouse";
 import Users from "./pages/Users";
@@ -24,14 +23,17 @@ import Favourites from "./pages/Favourites";
 import { signUpByToken, signOut } from "./actions/userFlow";
 import HomePage from "./pages/HomePage/HomePage";
 import LinkPage from "./pages/LinkPage/LinkPage";
+import AdPage from "./pages/CreateAdPage/AdPage";
+import SettingsPage from "./pages/SettingsPage/SettingsPage"
+import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import "./App.css"
 
+import 'antd/dist/antd.less';
 const App = ({ name, photoUrl, id, role, signUpByToken, signOut }) => {
     useEffect(() => {
         async function fetchData() {
             await signUpByToken()
         }
-
         JSON.parse(localStorage.getItem('tokens'))?.accessToken &&
             fetchData()
     }, [])
@@ -42,18 +44,21 @@ const App = ({ name, photoUrl, id, role, signUpByToken, signOut }) => {
             <Switch>
 
 
+                <PrivateRouter path='/advertisment' component={AdPage} />
+                <PrivateRouter path='/settings' component={SettingsPage} />
                 <PrivateRouter path='/adminpanel' component={AdminPanel} />
-                <Route path='/register' component={Register} />
+                <Route path='/signup' component={RegistrationPage} />
                 <Route path='/login' component={LoginPage} />
                 <PrivateRouter exact path='/house' component={CreateHouse} />
                 <Route exact path='/houses' component={Houses} />
                 <PrivateRouter path='/house/:id' component={HouseById} />
                 <PrivateRouter exact path='/users' component={Users} />
-                <PrivateRouter path='/user/:id' component={UserHomePage} />
+                <PrivateRouter path='/profile' component={UserHomePage} />
                 <PrivateRouter exact path='/user' component={User} />
                 <Route path='/deleted' component={DeletedUserPage} />
                 <PrivateRouter path='/supportchat' component={SupportChat} />
                 <PrivateRouter path='/favourites' component={Favourites} />
+
                 <Route path='/' component={HomePage} />
                 {JSON.parse(localStorage.getItem('tokens'))?.accessToken ?
                     (<Redirect to="/houses" />) : (<Redirect to="/" />)}

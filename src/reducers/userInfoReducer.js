@@ -1,4 +1,4 @@
-import {GET_FAVOURITES_SUCCESS, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS} from "../types";
+import { GET_FAVOURITES_SUCCESS, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS } from "../types";
 
 const emptyStore = {
     id: null,
@@ -6,24 +6,24 @@ const emptyStore = {
     surname: null,
     login: null,
     mail: null,
-    photoUrl: 'https://lun-bucket.s3.eu-central-1.amazonaws.com/users/defaultUserPhoto.jpg',
+    photoUrl: null,
     role: 'user',
     favouritesHousesIds: null,
     favouritesHousesInfo: null
 }
-const initStore = {...emptyStore}
+const initStore = { ...emptyStore }
 
-export default function reducer(store = initStore, {type, payload}) {
+export default function reducer(store = initStore, { type, payload }) {
     switch (type) {
         case SIGN_IN_SUCCESS: {
-            return {...store, ...payload}
+            return { ...store, ...payload }
         }
         case SIGN_OUT_SUCCESS: {
             return emptyStore
         }
         case GET_FAVOURITES_SUCCESS: {
             console.log(store)
-            return {...store, ...payload}
+            return { ...store, ...payload }
         }
         default:
             return store;

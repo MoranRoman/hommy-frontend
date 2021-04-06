@@ -1,5 +1,4 @@
 body {
-    background-image: url("../../assets/images/homepage.jpg");
     background-size: 100vw 100vh ;
     background-repeat: no-repeat;
 }
@@ -34,16 +33,17 @@ body {
     text-align: center;
     color: orange;
     margin-top: 5vh;
-    padding: 3vh 17vh 3vh 17vh;
+    padding: 3vh 2vh 3vh 2vh;
     border-radius: 10px;
     border: 0px solid;
     background: white;
+    width: 30vw;
 
 }
 
 input::placeholder{
     color: orange;
-  }
+}
 
   textarea:focus, input:focus{
     outline: none;

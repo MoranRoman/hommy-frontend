@@ -2,9 +2,8 @@
 
 
 body {
-  font-family: Poppins;
+  font-family: Poppins !important;
 }
-
 a:-webkit-any-link {
   text-decoration: none;
   color: white;

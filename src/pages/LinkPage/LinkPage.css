@@ -1,0 +1,91 @@
+.ant-menu-horizontal {
+    
+    border-bottom: none !important;
+}
+
+.ant-menu {
+    background: none  !important;
+    font-family: Poppins !important;
+    font-size: 1.5vw !important;
+    color: white !important;
+}
+
+.right-clmn-div {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.div-add-ad {
+    color:white;
+    background-color: orange;
+    border-radius: 50px;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+}
+.div-add-ad:hover {
+    transition: 0.5s;
+    background-color: white;
+    
+}
+.div-add-ad:hover .plus {
+    transition: 0.5s;
+    fill: orange !important;
+}
+.plus:hover .div-add-ad {
+    transition: 0.5s;
+    color: orange !important;
+}
+.plus {
+    transition: 0.5s;
+    fill: white;
+}
+
+.ant-menu-item-selected {
+    background-color: none;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+.ant-menu-vertical.ant-menu-sub {
+width: 17vw !important;
+}
+
+.div-user-photo {
+    margin: 1.5vh 0 2vh 1vw;
+    background-color: none;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+
+}
+
+.div-account {
+    align-items: center;
+}
+
+.ant-menu-submenu-popup > .ant-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ant-menu-vertical .ant-menu-item:not(:last-child) {
+    margin-bottom: 0.6vh !important;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: transparent !important; 
+
+}

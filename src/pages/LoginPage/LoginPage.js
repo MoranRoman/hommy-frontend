@@ -3,11 +3,17 @@ import { useHistory } from "react-router-dom";
 import { useAlert } from "react-alert";
 import axios from "axios";
 import { connect } from "react-redux";
-
+import {
+    Link
+} from "react-router-dom";
 import { signUp } from "../../actions/userFlow";
 import "./LoginPage.css"
 
-const Login = ({ signUp, ...rest }) => {
+const LoginPage = ({ signUp, ...rest }) => {
+    useEffect(() => {
+        let backgroundImage = require("../../assets/images/homepage.jpg");
+        document.querySelector('body').style.backgroundImage = `url("${backgroundImage}")`;
+    }, [])
     const alert = useAlert()
     const history = useHistory();
 
@@ -15,13 +21,13 @@ const Login = ({ signUp, ...rest }) => {
         try {
             e.preventDefault();
             const res = await axios.post('http://localhost:3000/login', {
-                login: e.target.login.value,
+                mail: e.target.email.value,
                 pass: e.target.pass.value
             })
 
             await signUp(res.data)
             alert.success("Login successful");
-            history.push(`/user/${res.data.id}`)
+            history.push('/settings')
         } catch (e) {
             alert.error("Invalid username or password")
         }
@@ -30,7 +36,7 @@ const Login = ({ signUp, ...rest }) => {
     return (
         <form onSubmit={(e) => handleLogin(e)}>
             <div className="div-login-main">
-                <input name="login" type="text" placeholder="Email" className="div-login-email" />
+                <input name="email" type="mail" placeholder="Email" className="div-login-email" />
                 <input name="pass" type="password" placeholder="Password" className="div-login-email" style={{ marginTop: "3vh" }} />
                 <div className="div-login-main-text-login">
                     <span style={{ color: "white" }}>Login with:</span>
@@ -50,6 +56,7 @@ const Login = ({ signUp, ...rest }) => {
 
                 </div>
                 <button className="div-login-main-btn">Log in</button>
+                <Link to="/signup">Don't have an account?</Link>
             </div>
         </form >
     )
@@ -57,4 +64,4 @@ const Login = ({ signUp, ...rest }) => {
 
 const mapDispatchToProps = { signUp };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(LoginPage);
