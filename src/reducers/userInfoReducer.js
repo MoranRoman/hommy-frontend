@@ -6,7 +6,7 @@ const emptyStore = {
     surname: null,
     login: null,
     mail: null,
-    photoUrl: null,
+    photoUrl: require("../assets/images/default-photo.jpg"),
     role: 'user',
     favouritesHousesIds: null,
     favouritesHousesInfo: null
@@ -16,7 +16,10 @@ const initStore = { ...emptyStore }
 export default function reducer(store = initStore, { type, payload }) {
     switch (type) {
         case SIGN_IN_SUCCESS: {
-            return { ...store, ...payload }
+            const { photoUrl, ...rest } = payload
+            return {
+                ...store, ...rest, photoUrl: photoUrl || require("../assets/images/default-photo.jpg")
+            }
         }
         case SIGN_OUT_SUCCESS: {
             return emptyStore

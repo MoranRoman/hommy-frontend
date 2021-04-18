@@ -1,0 +1,98 @@
+.settings-main{
+    width: 35vw;
+    height: 67vh;
+    border-radius: 50px;
+    display: flex;
+    margin: 7vh 0 0 30vw;
+    background: rgba(255, 255, 255, 0.2); 
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.settings-avatar {
+    margin: 7% 0 0 7%;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+  }
+
+  .settings-header-text {
+    height: 200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 3vh;
+  }
+
+.settings-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.ant-input {
+  background-color: transparent !important;
+  border: none !important;
+  width: 80% !important;
+  font-size: 3vh !important;
+  margin-top: 3vh !important;
+  margin-left: 2vw !important;
+}
+
+
+
+.avatar {
+  display: block;
+  height: 150px ;
+  width: 150px ;
+  margin-top: 15%;
+  margin-left: 15%;
+  cursor: pointer;
+  position: relative;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.avatar .anticon {
+  content: '';
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  position: absolute;
+  background-color: rgba(#000, 0);
+  transition: 0.2s;
+}
+
+.avatar .anticon svg {
+  fill: #fff;
+  opacity: 0;
+  width: 50%;
+  height: 50%;
+}
+
+.avatar .anticon-spin{
+  opacity: 1 !important;
+  fill: black !important;
+}
+
+.avatar .anticon-spin svg {
+  fill: black;
+  opacity: 1;
+}
+.avatar:hover .anticon{
+  background-color: black;
+  opacity: 0.4;
+}
+.avatar:hover .anticon svg{
+  fill: #fff;
+  opacity: 1;
+}
+
+.avatar:hover .anticon-spin svg{
+  fill: #fff;
+}

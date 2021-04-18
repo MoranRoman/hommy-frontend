@@ -45,7 +45,7 @@ const App = ({ name, photoUrl, id, role, signUpByToken, signOut }) => {
 
 
                 <PrivateRouter path='/advertisment' component={AdPage} />
-                <PrivateRouter path='/settings' component={SettingsPage} />
+                <PrivateRouter path='/settings' component={() => <SettingsPage signOut />} />
                 <PrivateRouter path='/adminpanel' component={AdminPanel} />
                 <Route path='/signup' component={RegistrationPage} />
                 <Route path='/login' component={LoginPage} />

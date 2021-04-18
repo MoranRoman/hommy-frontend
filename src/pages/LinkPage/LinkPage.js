@@ -21,7 +21,6 @@ const LinkPage = ({ id, history, signOut }) => {
         setState({ current: e.key });
     };
     const user = useSelector(({ userInfo }) => userInfo)
-    console.log(user);
     return (
         <div style={{ display: "flex", alignItems: "center" }}>
             <div style={{ width: "40%", fontSize: "4vw", margin: "3vh 0 0 4vw" }}>
@@ -43,13 +42,13 @@ const LinkPage = ({ id, history, signOut }) => {
                     }
                 </div>
                 <div className="right-clmn-div" style={{ width: "20%" }}>
-                    {JSON.parse(localStorage.getItem('tokens')).accessToken ?
+                    {JSON.parse(localStorage.getItem('tokens'))?.accessToken ?
                         (< Menu onClick={handleClick} selectedKeys={[state.current]} mode="horizontal">
 
                             <SubMenu key="SubMenu" title="My account" className="div-account" >
 
                                 <div className="div-user-photo">
-                                    <img src={user.photoUrl || require("../../assets/images/default-photo.jpg")} className="avatar" />
+                                    <img src={user.photoUrl || require("../../assets/images/default-photo.jpg")} className="avatar-link-page" />
                                     <span style={{ marginRight: "1vw" }}>{user.name} {user.surname}</span>
                                 </div>
 
@@ -64,11 +63,14 @@ const LinkPage = ({ id, history, signOut }) => {
                                 <SubMenu key="SubMenu" title="My account" className="div-account">
 
                                     <div className="div-user-photo">
-                                        You logged as, Guest
+                                        <img src={user.photoUrl} className="avatar-link-page" />
+                                        <span style={{ marginRight: "1vw" }}>Guest</span>
                                     </div>
                                     <div>
-                                        <Link to="/login">Sign in</Link>
-                                        <Link to="/signup">Sign up</Link>
+                                        <Menu.Item key="setting:1"><Link to="/login">Sign in</Link></Menu.Item>
+                                        <Menu.Item key="setting:1"><Link to="/signup">Sign up</Link></Menu.Item>
+
+
                                     </div>
                                 </SubMenu>
                             </Menu>
