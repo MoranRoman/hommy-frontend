@@ -3,14 +3,14 @@ body {
     background-repeat: no-repeat;
 }
 
-.div-reg-main{
-    width: 30vw;
+.div-reg-main {
+    width: 40vw;
     height: 65vh;
     border-radius: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 12vh 0 0 35vw;
+    margin: 12vh 0 0 29vw;
     background-color: orange;
 }
 
@@ -18,20 +18,19 @@ input::placeholder{
     color: #9F9F9F;
 }
 
-.div-reg-email{
-    font-family: Poppins;
+.div-reg-email {
+    font-family: Poppins, serif;
     font-size: large;
     margin-top: 5vh;
-    height: 6vh;
-    width: 23vw;
+    height: 8vh;
+    width: 30vw;
     border-radius: 7px;
     padding: 0 1vw 0 1vw;
     border: 1px rgba(255, 255, 255, 0.9);
-    background-color: rgba(255, 255, 255, 0.9);;
-
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
-  textarea:focus, input:focus{
+textarea:focus, input:focus{
     outline: none;
 }
 
@@ -44,6 +43,19 @@ input::placeholder{
     margin-top: 2vh;
     letter-spacing: 1px;
     border: 1px solid orange;
-    
 }
 
+.div-reg-main-sm {
+    width: 94vw;
+    height: 80vh;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1vh 3vw 0 3vw;
+    background-color: orange;
+}
+
+.div-reg-main-sm .div-reg-email {
+    width: 80vw;
+}

@@ -1,54 +1,82 @@
-.ant-menu-horizontal {
-    
-    border-bottom: none !important;
+.link-tab {
+    display: flex;
+    align-items: center;
 }
 
-.ant-menu {
-    background: none  !important;
-    font-family: Poppins !important;
-    font-size: 1.5vw !important;
-    color: white !important;
+.logo {
+    font-size: 3rem;
+    margin: 3vh 0 0 4vw;
+}
+
+.nav-menu {
+    font-size: 1.5rem;
+    margin: 3vh 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.width-50-percent {
+    width: 50%;
+}
+
+.width-75-percent {
+    width: 75%;
+}
+
+.width-100-percent {
+    width: 100%;
 }
 
 .right-clmn-div {
-    width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
-
 
 .div-add-ad {
     color:white;
     background-color: orange;
     border-radius: 50px;
-    width: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 0.5s;
 }
+
+.margin-right-4-vw {
+    margin-right: 4vw;
+}
+
 .div-add-ad:hover {
     transition: 0.5s;
     background-color: white;
-    
 }
+
 .div-add-ad:hover .plus {
     transition: 0.5s;
     fill: orange !important;
 }
+
 .plus:hover .div-add-ad {
     transition: 0.5s;
     color: orange !important;
 }
+
 .plus {
     transition: 0.5s;
     fill: white;
 }
 
+.open-drawer-div {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 3vh;
+}
+
 .ant-menu-item-selected {
-    background-color: none;
+    background-color: transparent;
 }
 
 .avatar-link-page {
@@ -58,21 +86,35 @@
     border-radius: 50%;
   }
 
-.ant-menu-vertical.ant-menu-sub {
-width: 17vw !important;
-}
-
 .div-user-photo {
     margin: 1.5vh 0 2vh 1vw;
-    background-color: none;
+    background-color: transparent;
     justify-content: space-between;
     align-items: center;
     display: flex;
-
 }
 
-.div-account {
-    align-items: center;
+.ant-menu {
+    background: none  !important;
+    font-family: Poppins, serif !important;
+    font-size: 1.5vw !important;
+    color: white !important;
+}
+
+.ant-menu-root {
+    font-size: 1.5rem !important;
+}
+
+.ant-menu-horizontal {
+    border-bottom: none !important;
+}
+
+.ant-menu-vertical.ant-menu-sub {
+    width: 17vw !important;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu {
+    margin: -1px 0 0 0 !important;
 }
 
 .ant-menu-submenu-popup > .ant-menu {
@@ -86,6 +128,33 @@ width: 17vw !important;
 }
 
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background-color: transparent !important; 
+    background-color: transparent !important;
+}
 
+.ant-menu-item a {
+    color: white !important;
+}
+
+.ant-drawer-body {
+    background-color: antiquewhite;
+}
+
+.nav-menu-drawer {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-menu-drawer .ant-menu-inline {
+    width: initial;
+}
+
+.nav-menu-drawer .ant-menu {
+    font-size: 1.5rem !important;
+}
+
+.nav-menu-drawer .div-user-photo {
+    justify-content: center;
+    margin: 1.5vh 0 2vh 0;
 }

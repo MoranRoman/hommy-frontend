@@ -2,44 +2,74 @@ body {
     background-size: 100vw 100vh ;
     background-repeat: no-repeat;
 }
-.div-main {
+.div-main-xl {
     display: flex;
-    align-items: flex-end;
     flex-direction: column;
     margin: 25vh 4vw 0 0;
+    align-items: flex-end;
 }
 
-.div-text { 
-    width: 40%;
+.div-main-sm {
+    display: flex;
+    flex-direction: column;
+    margin: 15vh 0 0 0;
+    align-items: center;
+}
+
+.div-text {
     color: white;
-    font-size: 3vw;
+    font-size: 3rem;
     font-weight: bold;
+    line-height: 45px;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.div-text span {
+    font-size: 2.5rem;
 }
 
 .div-btns {
-    font-size: 2vw;
+    font-size: 2rem;
+    cursor: pointer;
     font-weight: normal;
     display: flex;
-    justify-content: space-between;
-    padding-top: 5vh;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-top: 3vh;
 }
 
-.div-left-btn {
+.login {
     background-color: orange;
     color: white;
     border: 2px solid orange;
-    border-radius: 50px;
-    padding: 1vh 8vh 1vh 8vh;
 }
 
-.div-right-btn {
-    background-color: white;
-    color: orange !important; 
-    border: 2px solid white;
-    border-radius: 50px;
-    padding: 1vh 8vh 1vh 8vh;
-}
-
-.div-left-btn a:hover  {
+.login a:hover  {
     color: white !important;
+}
+
+.register {
+    background-color: white;
+    color: orange !important;
+    border: 2px solid white;
+}
+
+.div-btns-default {
+    border-radius: 50px;
+    width: 25vh;
+    height: 6vh;
+    margin-top: 1vh;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-left: 1vw;
+    margin-right: 1vw;
 }
