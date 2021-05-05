@@ -1,9 +1,8 @@
 .settings-main{
-    width: 35vw;
+    width: 37vw;
     height: 67vh;
     border-radius: 50px;
     display: flex;
-    margin: 7vh 0 0 30vw;
     background: rgba(255, 255, 255, 0.2); 
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
@@ -16,7 +15,7 @@
     border-radius: 50%;
   }
 
-  .settings-header-text {
+.settings-header-text {
     height: 200px;
     width: 100%;
     display: flex;
@@ -34,15 +33,12 @@
   background-color: transparent !important;
   border: none !important;
   width: 80% !important;
-  font-size: 3vh !important;
-  margin-top: 3vh !important;
-  margin-left: 2vw !important;
 }
 
 .avatar {
   display: block;
-  height: 150px ;
-  width: 150px ;
+  width: 30vw;
+  height: 30vw;
   margin-top: 15%;
   margin-left: 15%;
   cursor: pointer;
@@ -93,3 +89,81 @@
 .avatar:hover .anticon-spin svg{
   fill: #fff;
 }
+
+.div-settings-main-sm {
+    width: initial;
+    height: 70vh;
+    border-radius: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5vh 3vw 0 3vw;
+}
+
+
+.div-settings-main-sm::before {
+  z-index: -1;
+  content: '';
+  background: rgba(255, 255, 255, 0.2); 
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  width: 95vw;
+  height: 70vh;
+  border-radius: 50px;
+}
+
+.div-settings-main-sm .div-settings-main-avatar {
+  width: 30vw;
+  height: 30vw;
+}
+
+.div-settings-main-sm .settings-header-text {
+    flex-direction: column;
+    height: initial;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5em !important;
+    
+}
+
+.div-settings-main-sm .avatar {
+  display: block;
+  width: 30vw;
+  height: 30vw;
+  margin-top: 15%;
+  margin-left: 0%;
+  cursor: pointer;
+  position: relative;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.div-settings-main-sm .settings-header-text-name  {
+  margin-top: 3vh;
+  padding: 0 0 !important;
+}
+
+.div-settings-main-sm .settings-header-text-name .ant-input  {
+  font-size: 1.3rem !important;
+}
+
+.div-settings-main-sm .settings-header-text-others .ant-input {
+  color: white !important;
+  padding: 0 0 !important;
+}
+
+.div-settings-main-sm .settings-header-text-others div {
+  display: flex;
+  justify-content: center;
+}
+
+.div-settings-main-line {
+  width: 90%;
+  margin-top: 3vh;
+}
+
