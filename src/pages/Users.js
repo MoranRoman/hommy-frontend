@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 import { connect } from 'react-redux'
 
 import requester from '../factories'
@@ -13,7 +12,7 @@ const Users = ({ signOut }) => {
     e.preventDefault()
     const response = await requester('get', 'http://localhost:3000/users', {}, signOut, history)
 
-    response && setUsers(response.data.length === 0 ? [] : response.data)
+    if (response) setUsers(response.data.length === 0 ? [] : response.data)
   }
   return (
     <>

@@ -30,8 +30,7 @@
     flex-direction: row;
 }
 
-
-.ant-input {
+.settings-main .ant-input {
   background-color: transparent !important;
   border: none !important;
   width: 80% !important;
@@ -39,8 +38,6 @@
   margin-top: 3vh !important;
   margin-left: 2vw !important;
 }
-
-
 
 .avatar {
   display: block;

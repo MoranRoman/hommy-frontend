@@ -5,7 +5,7 @@ import { Upload, notification, Input } from 'antd'
 import { CameraOutlined, LoadingOutlined } from '@ant-design/icons'
 import { setNewUserPhoto } from '../../actions/userFlow'
 
-import './SettingsPage.css'
+import './index.css'
 
 const SettingsPage = () => {
   const user = useSelector(({ userInfo }) => userInfo)

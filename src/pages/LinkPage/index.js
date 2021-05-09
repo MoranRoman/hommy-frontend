@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Menu, Drawer } from 'antd'
 import { signOut } from '../../actions/userFlow'
 
-import './LinkPage.css'
+import './index.css'
 
 const { SubMenu } = Menu
 const LinkPage = ({ history }) => {
@@ -47,17 +47,18 @@ const LinkPage = ({ history }) => {
         <Link to="/houses">Catalog</Link>
       )}
       {history.location.pathname === '/favourites' ? (
-        <Link to="/favourites">
+        <Link to="/">
           <a style={{ color: 'orange' }}>Favourites</a>
         </Link>
       ) : (
-        <Link to="/favourites">Favourites</Link>
+        <Link to="/">Favourites</Link>
       )}
       {JSON.parse(localStorage.getItem('tokens'))?.accessToken ? (
         <Menu onClick={handleClick} selectedKeys={[historyKey]} mode="horizontal">
           <SubMenu key="SubMenu" title="My account" className="div-account">
             <div className="div-user-photo">
               <img
+                alt=""
                 src={user.photoUrl || require('../../assets/images/default-photo.jpg')}
                 className="avatar-link-page"
               />
@@ -75,7 +76,7 @@ const LinkPage = ({ history }) => {
         <Menu onClick={handleClick} selectedKeys={[historyKey]} mode="horizontal">
           <SubMenu key="SubMenu" title="My account" className="div-account">
             <div className="div-user-photo">
-              <img src={user.photoUrl} className="avatar-link-page" />
+              <img alt="" src={user.photoUrl} className="avatar-link-page" />
               <span style={{ marginRight: '1vw', marginLeft: '1vw' }}>Guest</span>
             </div>
             <Menu.Item key="login">Log in</Menu.Item>
@@ -84,11 +85,11 @@ const LinkPage = ({ history }) => {
         </Menu>
       )}
       {history.location.pathname === '/supportchat' ? (
-        <Link to="/supportchat">
+        <Link to="/">
           <a style={{ color: 'orange' }}>Help</a>
         </Link>
       ) : (
-        <Link to="/supportchat">Help</Link>
+        <Link to="/">Help</Link>
       )}
       <div className="div-add-ad margin-right-4-vw">
         <svg
@@ -110,7 +111,7 @@ const LinkPage = ({ history }) => {
             className="plus"
           />
         </svg>
-        <Link to="/advertisment" style={{ paddingRight: '5px' }}>
+        <Link to="/add-advertisement" style={{ paddingRight: '5px' }}>
           Add an ad
         </Link>
       </div>
@@ -156,11 +157,11 @@ const LinkPage = ({ history }) => {
             <Link to="/houses">Catalog</Link>
           )}
           {history.location.pathname === '/favourites' ? (
-            <Link to="/favourites">
+            <Link to="/">
               <a style={{ color: 'orange' }}>Favourites</a>
             </Link>
           ) : (
-            <Link to="/favourites">Favourites</Link>
+            <Link to="/">Favourites</Link>
           )}
           {JSON.parse(localStorage.getItem('tokens'))?.accessToken ? (
             <Menu onClick={handleClick} selectedKeys={[historyKey]} mode="inline">
@@ -193,11 +194,11 @@ const LinkPage = ({ history }) => {
             </Menu>
           )}
           {history.location.pathname === '/supportchat' ? (
-            <Link to="/supportchat">
+            <Link to="/">
               <a style={{ color: 'orange' }}>Help</a>
             </Link>
           ) : (
-            <Link to="/supportchat">Help</Link>
+            <Link to="/">Help</Link>
           )}
           <div className="div-add-ad">
             <svg
@@ -219,7 +220,7 @@ const LinkPage = ({ history }) => {
                 className="plus"
               />
             </svg>
-            <Link to="/advertisment" style={{ paddingRight: '5px' }}>
+            <Link to="/add-advertisement" style={{ paddingRight: '5px' }}>
               Add an ad
             </Link>
           </div>

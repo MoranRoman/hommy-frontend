@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-import './HomePage.css'
+import './index.css'
 
 const HomePage = ({ history }) => {
   useEffect(() => {

@@ -16,6 +16,7 @@
     "jsx-a11y/label-has-associated-control": "off",
     "jsx-a11y/href-no-hash": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/anchor-is-valid": "off",
     "prettier/prettier": ["error"],
     "global-require": "off",
     "no-nested-ternary": "off",

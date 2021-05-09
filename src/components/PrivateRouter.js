@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import axios from 'axios'
 
 const PrivateRouter = ({ path, component }) => {
   if (!JSON.parse(localStorage.getItem('tokens'))?.accessToken) {
@@ -11,11 +10,3 @@ const PrivateRouter = ({ path, component }) => {
 }
 
 export default PrivateRouter
-
-/*
-
- (async () => {
-        const response = await axios.get('http://localhost:3000/checkToken', { headers: { authorization: JSON.parse(localStorage.getItem('tokens')).accessToken } })
-
-    })()
-*/

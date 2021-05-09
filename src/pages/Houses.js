@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { useAlert } from 'react-alert'
 import axios from 'axios'
 
 import HouseCard from '../components/HouseCard'
@@ -13,7 +11,7 @@ const Houses = () => {
 
     const response = await axios.get('http://localhost:3000/houses')
 
-    response && setHouses(response.data.length === 0 ? [] : response.data)
+    if (response) setHouses(response.data.length === 0 ? [] : response.data)
   }
   return (
     <>

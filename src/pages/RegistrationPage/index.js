@@ -1,52 +1,76 @@
 import React, { useEffect } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { useAlert } from 'react-alert'
 import axios from 'axios'
-import { signIn } from '../../actions/userFlow'
+import { useAlert } from 'react-alert'
+import { Link } from 'react-router-dom'
+import './index.css'
 
-import './LoginPage.css'
-
-const LoginPage = ({ signIn }) => {
+const RegistrationPage = ({ history }) => {
   const alert = useAlert()
-  const history = useHistory()
 
   useEffect(() => {
-    const backgroundImage = require('../../assets/images/homepage.jpg')
+    const backgroundImage = require('../../assets/images/registration-background.jpg')
     document.querySelector('body').style.backgroundImage = `url("${backgroundImage}")`
   }, [])
 
-  const handleLogin = async (e) => {
-    try {
-      e.preventDefault()
-      const res = await axios.post('http://localhost:3000/login', {
-        mail: e.target.email.value,
-        pass: e.target.pass.value,
-      })
+  const handleRegister = (e) => {
+    e.preventDefault()
+    const bodyFormData = new FormData()
 
-      await signIn(res.data)
-      alert.success('Login successful')
-      history.push('/settings')
-    } catch (e) {
-      alert.error('Invalid username or password')
-    }
+    if (e.target.pass.value !== e.target.passConfirm.value) return alert.error('Passwords are different')
+
+    bodyFormData.set('name', `${e.target.name.value}`)
+    bodyFormData.set('surname', `${e.target.lastName.value}`)
+    bodyFormData.set('pass', `${e.target.pass.value}`)
+    bodyFormData.set('mail', `${e.target.email.value}`)
+
+    axios
+      .post('http://localhost:3000/register', bodyFormData, { headers: { 'Content-Type': 'multipart/form-data' } })
+      .then(() => {
+        alert.success('Registration Successful')
+        history.push('/login')
+      })
+      .catch((error) => {
+        alert.error(error.response.data)
+      })
   }
 
   return (
-    <form onSubmit={(e) => handleLogin(e)}>
-      <div className={window.innerWidth <= 900 ? 'div-login-main-sm' : 'div-login-main'}>
-        <input name="email" type="mail" placeholder="Email" className="div-login-email" />
+    <form id="formElem" onSubmit={(e) => handleRegister(e)}>
+      <div className={window.innerWidth <= 900 ? 'div-reg-main-sm' : 'div-reg-main'}>
+        <input name="name" type="text" placeholder="Name" className="div-reg-email" required />
+        <input
+          name="lastName"
+          type="text"
+          placeholder="Surname"
+          className="div-reg-email"
+          style={{ marginTop: '3vh' }}
+          required
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Email"
+          className="div-reg-email"
+          style={{ marginTop: '3vh' }}
+          required
+        />
         <input
           name="pass"
           type="password"
           placeholder="Password"
-          className="div-login-email"
+          className="div-reg-email"
           style={{ marginTop: '3vh' }}
+          required
         />
-        <div className="div-login-main-text-login">
-          <span style={{ color: 'white' }}>Login with:</span>
-        </div>
-        <div className="login-with-images">
+        <input
+          name="passConfirm"
+          type="password"
+          placeholder="Confirm your password"
+          className="div-reg-email"
+          style={{ marginTop: '3vh' }}
+          required
+        />
+        <div className="oauth-icon">
           <svg width="66" height="66" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M65.4596 27.0217L65.1695 25.4363H31.0664V40.905H48.6559C45.7144 46.7565 39.7183 50.5312 33 50.5312C23.3332 50.5312 15.4688 42.6668 15.4688 33C15.4688 23.3332 23.3332 15.4688 33 15.4688C37.6826 15.4688 42.0852 17.2923 45.3965 20.6035L46.7637 21.9707L57.7018 11.0327L56.3346 9.66552C50.1017 3.43264 41.8147 0 33 0C24.1854 0 15.8984 3.43264 9.66539 9.66539C3.43264 15.8984 0 24.1854 0 33C0 41.8146 3.43264 50.1016 9.66539 56.3346C15.8984 62.5674 24.1854 66 33 66C41.8146 66 50.1016 62.5674 56.3346 56.3346C62.5674 50.1016 66 41.8146 66 33C66 30.9923 65.8182 28.9808 65.4596 27.0217ZM33 3.86719C40.1339 3.86719 46.876 6.4136 52.1883 11.077L46.7031 16.5623C42.8639 13.3504 38.0661 11.6016 33 11.6016C26.2426 11.6016 20.2077 14.751 16.2833 19.6581L10.7923 14.1671C16.1404 7.87037 24.1109 3.86719 33 3.86719ZM8.46411 17.3077L14.111 22.9546C12.5105 25.9518 11.6016 29.3715 11.6016 33C11.6016 36.6285 12.5105 40.0482 14.1109 43.0454L8.46398 48.6923C5.55534 44.1602 3.86719 38.7736 3.86719 33C3.86719 27.2264 5.55534 21.8398 8.46411 17.3077ZM10.7923 51.8329L16.2833 46.3419C20.2077 51.249 26.2426 54.3984 33 54.3984C36.5537 54.3984 39.9764 53.5399 43.0524 51.896L48.6924 57.5359C44.1602 60.4447 38.7736 62.1328 33 62.1328C24.1109 62.1328 16.1404 58.1296 10.7923 51.8329ZM51.8329 55.2077L46.3491 49.724C49.654 47.087 52.0744 43.5899 53.3708 39.5642L54.1843 37.0379H34.9336V29.3035H61.9004C62.055 30.5256 62.1328 31.7633 62.1328 33C62.1328 41.8891 58.1296 49.8596 51.8329 55.2077Z"
@@ -74,13 +98,11 @@ const LoginPage = ({ signIn }) => {
             />
           </svg>
         </div>
-        <button className="div-login-main-btn">Log in</button>
-        <Link to="/register">Don't have an account?</Link>
+        <button className="div-reg-main-btn">Register</button>
+        <Link to="/login">Already have an account?</Link>
       </div>
     </form>
   )
 }
 
-const mapDispatchToProps = { signIn }
-
-export default connect(null, mapDispatchToProps)(LoginPage)
+export default RegistrationPage
