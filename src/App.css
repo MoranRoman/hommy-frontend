@@ -54,3 +54,8 @@ a:-webkit-any-link {
     animation: App-logo-spin infinite 20s linear;
   }
 }
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+  background-color: transparent !important;
+}
+

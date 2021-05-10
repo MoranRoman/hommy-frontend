@@ -10,6 +10,9 @@ const emptyStore = {
   role: 'user',
   favouritesHousesIds: null,
   favouritesHousesInfo: null,
+  country: null,
+  region: null,
+  city: null
 }
 const initStore = { ...emptyStore }
 
