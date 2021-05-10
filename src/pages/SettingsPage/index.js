@@ -6,7 +6,7 @@ import { CameraOutlined, LoadingOutlined } from '@ant-design/icons'
 import { setNewUserPhoto, signOut } from '../../actions/userFlow'
 import { Link, useHistory } from 'react-router-dom'
 import requester from '../../factories'
-import './SettingsPage.css'
+import './index.css'
 import { useAlert } from 'react-alert'
 const { TextArea } = Input;
 const { Option } = Select;
