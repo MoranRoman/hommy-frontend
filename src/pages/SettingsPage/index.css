@@ -238,15 +238,20 @@
 .div-settings-main-sm .settings-header-text-name  {
   margin-top: 3vh;
   padding: 0 0 !important;
+  
 }
 
 .div-settings-main-sm .settings-header-text-name .ant-input  {
   font-size: 1.3rem !important;
+  background-color: transparent !important;
+  border: none;
 }
 
 .div-settings-main-sm .settings-header-text-others .ant-input {
   color: white !important;
   padding: 0 0 !important;
+  background-color: transparent !important;
+  border: none;
 }
 
 .div-settings-main-sm .settings-header-text-others div {
@@ -284,6 +289,9 @@ border-radius: 10px !important;
 
 .div-settings-main-sm textarea.ant-input {
  width: 80vw !important;
+ background-color: white !important;
+ opacity: 0.7;
+  border-radius: 10px !important;
 }
 
 .div-settings-main-sm .picker-place .ant-input {
@@ -291,6 +299,7 @@ border-radius: 10px !important;
   width: 25vw !important;
   border-radius: 5px;
 }
+
 
 .div-settings-main-sm .ant-select-selector {
   border-radius: 10px !important;

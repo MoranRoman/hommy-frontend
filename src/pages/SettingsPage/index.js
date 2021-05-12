@@ -287,14 +287,3 @@ const SettingsPage = () => {
 }
 
 export default SettingsPage
-
-/*
-<Form.Item name="country">
-<Input placeholder="Country..." />
-</Form.Item>
-<Form.Item name="region">
-<Input placeholder="Region..." style={{ marginRight: "5vw", marginLeft: "5vw" }} />
-</Form.Item>
-<Form.Item name="city">
-<Input placeholder="City..." />
-</Form.Item>*/
