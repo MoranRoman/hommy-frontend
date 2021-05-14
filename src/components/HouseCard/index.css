@@ -23,6 +23,7 @@
 .card-content-header img {
     width: 100%;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .card-house-type {
@@ -32,9 +33,18 @@
     align-items: center;
 }
 
-.card-house-type img {
+.card-house-type svg {
     margin-right: 7%;
+    stroke: #FDB137;
+    stroke-width: 2;
 }
+
+
+.card-house-type svg :hover{
+    fill: #FDB137;
+    
+}
+
 
 .main-card h3{
     margin-bottom: 0 !important;
