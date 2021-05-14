@@ -47,11 +47,11 @@ const LinkPage = ({ history }) => {
         <Link to="/catalog">Catalog</Link>
       )}
       {history.location.pathname === '/favourites' ? (
-        <Link to="/">
+        <Link to="/favourites">
           <a style={{ color: 'orange' }}>Favourites</a>
         </Link>
       ) : (
-        <Link to="/">Favourites</Link>
+        <Link to="/favourites">Favourites</Link>
       )}
       {JSON.parse(localStorage.getItem('tokens'))?.accessToken ? (
         <Menu onClick={handleClick} selectedKeys={[historyKey]} mode="horizontal">
@@ -157,11 +157,11 @@ const LinkPage = ({ history }) => {
             <Link to="/catalog">Catalog</Link>
           )}
           {history.location.pathname === '/favourites' ? (
-            <Link to="/">
+            <Link to="/favourites">
               <a style={{ color: 'orange' }}>Favourites</a>
             </Link>
           ) : (
-            <Link to="/">Favourites</Link>
+            <Link to="/favourites">Favourites</Link>
           )}
           {JSON.parse(localStorage.getItem('tokens'))?.accessToken ? (
             <Menu onClick={handleClick} selectedKeys={[historyKey]} mode="inline">
