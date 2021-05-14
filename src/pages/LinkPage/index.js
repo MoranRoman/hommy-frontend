@@ -39,12 +39,12 @@ const LinkPage = ({ history }) => {
           : 'width-50-percent'
       }`}
     >
-      {history.location.pathname === '/houses' ? (
-        <Link to="/houses">
+      {history.location.pathname === '/catalog' ? (
+        <Link to="/catalog">
           <a style={{ color: 'orange' }}>Catalog</a>
         </Link>
       ) : (
-        <Link to="/houses">Catalog</Link>
+        <Link to="/catalog">Catalog</Link>
       )}
       {history.location.pathname === '/favourites' ? (
         <Link to="/">
@@ -149,12 +149,12 @@ const LinkPage = ({ history }) => {
       )}
       <Drawer title="Menu" placement="right" width="100%" closable onClose={closeDrawer} visible={visible}>
         <div className="nav-menu-drawer width-100-percent">
-          {history.location.pathname === '/houses' ? (
-            <Link to="/houses">
+          {history.location.pathname === '/catalog' ? (
+            <Link to="/catalog">
               <a style={{ color: 'orange' }}>Catalog</a>
             </Link>
           ) : (
-            <Link to="/houses">Catalog</Link>
+            <Link to="/catalog">Catalog</Link>
           )}
           {history.location.pathname === '/favourites' ? (
             <Link to="/">
