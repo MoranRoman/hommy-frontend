@@ -1,0 +1,13 @@
+.leaflet-container {
+    width: 56vh;
+    height: 56vh;
+}
+
+.leaflet-container a:-webkit-any-link{
+    color: #ffa500 !important;
+}
+
+.leaflet-div-icon {
+    background: transparent;
+    border: none;
+    }

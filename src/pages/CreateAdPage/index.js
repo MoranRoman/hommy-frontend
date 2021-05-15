@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
-import { Form, InputNumber, Select, Upload, Tooltip } from 'antd'
+import { Form, InputNumber, Select, Upload, Tooltip, Modal } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import axios from 'axios'
 import requester from '../../factories'
+import MapPicker from '../../components/MapPicker'
 
 import './index.css'
+import { couldStartTrivia } from 'typescript'
 
 const { Dragger } = Upload
 const { Option } = Select
@@ -18,6 +20,9 @@ const AdPage = ({ history, isViewing }) => {
   const [mainPhotoFile, setMainPhotoFile] = useState()
   const [ad, setAd] = useState()
 
+  const [location, setLocation] = useState('Location')
+  const [currentPos, setCurrentPos] = useState()
+  const [isModalVisible, setIsModalVisible] = useState(false)
   const adId = history.location.pathname.split('/')[2]
 
   useEffect(() => {
@@ -77,6 +82,35 @@ const AdPage = ({ history, isViewing }) => {
 
   const renderTooltip = (message) => <Tooltip visible title={message} />
 
+  const handleOkModal = async () => {
+    const address = await axios.get(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${currentPos[0]},${currentPos[1]}&key=${process.env.REACT_APP_GOOGLE_API_KEY}&result_type=street_address`,
+    )
+    const mainAddress = address?.data?.results[0]?.address_components
+    const country = mainAddress?.filter((e) => e.types.includes('country'))[0]?.long_name
+    const state = mainAddress?.filter(
+      (e) => e.types.includes('administrative_area_level_1') || e.types.includes('administrative_area_level_2'),
+    )[0]?.long_name
+    const city = mainAddress?.filter((e) => e.types.includes('locality'))[0]?.long_name
+    const district = mainAddress?.filter(
+      (e) => e.types.includes('sublocality_level_1') || e.types.includes('sublocality_level_2'),
+    )[0]?.long_name
+    const street = mainAddress?.filter((e) => e.types.includes('route'))[0]?.long_name
+    const houseNumber = mainAddress?.filter((e) => e.types.includes('street_number'))[0]?.long_name
+    if (!country || !state || !city || !street || !houseNumber) {
+      alert.error('Location invalid. Try again')
+    } else {
+      setLocation([country, state, city, district, street, houseNumber].join(', '))
+      setIsModalVisible(false)
+    }
+  }
+
+  const handleCancelModal = () => {
+    setIsModalVisible(false)
+  }
+  const addLocation = () => {
+    setIsModalVisible(true)
+  }
   const props = {
     name: 'mainPhoto',
     multiple: false,
@@ -96,6 +130,17 @@ const AdPage = ({ history, isViewing }) => {
 
   return (
     <div className={`add-ad-global ${window.innerWidth <= 1100 ? 'ad-add-main-sm' : 'ad-add-main'}`}>
+      <Modal
+        title="Add location"
+        visible={isModalVisible}
+        width="60vh"
+        onOk={handleOkModal}
+        onCancel={handleCancelModal}
+      >
+        <div>
+          <MapPicker currentPos={currentPos} setCurrentPos={setCurrentPos} />
+        </div>
+      </Modal>
       <h2 className="ad-add-title">
         {isViewing ? 'View an advertisement' : ad ? 'Update an advertisement' : 'Create an advertisement'}
       </h2>
@@ -129,24 +174,43 @@ const AdPage = ({ history, isViewing }) => {
               )}
             </div>
             <div className={`main-info ${window.innerWidth <= 800 && 'width-100-percent'}`}>
-              <Form.Item
-                name="location"
-                rules={[{ required: true, message: renderTooltip('Location address is required') }]}
-              >
-                <input disabled={isViewing} type="text" placeholder="Add location" />
-              </Form.Item>
-              <Form.Item
-                name="phoneNumber"
-                rules={[{ required: true, message: renderTooltip('Phone number is required') }]}
-              >
-                <input disabled={isViewing} type="text" placeholder="Add your phone number" />
-              </Form.Item>
-              <Form.Item
-                name="description"
-                rules={[{ required: true, message: renderTooltip('Description is required') }]}
-              >
-                <input disabled={isViewing} type="text" placeholder="Add small description" />
-              </Form.Item>
+              <div className="main-info-input" onClick={addLocation}>
+                <div>
+                  <img src={require('../../assets/images/red-plus.svg')} width="30" height="30" alt="" />
+                </div>
+
+                <Form.Item
+                  name="location"
+                  rules={[{ required: true, message: renderTooltip('Location address is required') }]}
+                >
+                  <Tooltip title={location}>
+                    <div className="text-location">{location}</div>
+                  </Tooltip>
+                </Form.Item>
+              </div>
+
+              <div className="main-info-input">
+                <div>
+                  <img src={require('../../assets/images/red-plus.svg')} width="30" height="30" alt="" />
+                </div>
+                <Form.Item
+                  name="phoneNumber"
+                  rules={[{ required: true, message: renderTooltip('Phone number is required') }]}
+                >
+                  <input disabled={isViewing} type="text" placeholder="Phone number" />
+                </Form.Item>
+              </div>
+              <div className="main-info-input">
+                <div>
+                  <img src={require('../../assets/images/red-plus.svg')} width="30" height="30" alt="" />
+                </div>
+                <Form.Item
+                  name="description"
+                  rules={[{ required: true, message: renderTooltip('Description is required') }]}
+                >
+                  <input disabled={isViewing} type="text" placeholder="Description" />
+                </Form.Item>
+              </div>
             </div>
           </div>
           <div className={`secondary-info ${isViewing && 'viewing-inputs'}`}>
@@ -157,11 +221,11 @@ const AdPage = ({ history, isViewing }) => {
                   rules={[{ required: true, message: renderTooltip('House type is required') }]}
                 >
                   <Select placeholder="House type" allowClear>
-                    <Option value="plot">Plot</Option>
-                    <Option value="townhouse">Townhouse</Option>
-                    <Option value="cottage">Cottage</Option>
-                    <Option value="quadrex">Quadrex</Option>
-                    <Option value="duplex">Duplex</Option>
+                    <Option value="Plot">Plot</Option>
+                    <Option value="Townhouse">Townhouse</Option>
+                    <Option value="Cottage">Cottage</Option>
+                    <Option value="Quadrex">Quadrex</Option>
+                    <Option value="Duplex">Duplex</Option>
                   </Select>
                 </Form.Item>
                 <Form.Item name="squares" rules={[{ required: true, message: renderTooltip('Squares are required') }]}>

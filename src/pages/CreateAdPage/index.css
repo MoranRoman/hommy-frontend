@@ -3,14 +3,14 @@
 }
 
 .ad-add-main {
-    width: 40vw;
-    height: 55vh;
+    width: 30vw;
+    height: 70vh;
     border-radius: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 15vh 0 0 30vw;
+    margin: 10vh 0 0 35vw;
     backdrop-filter: blur(2px);
 }
 
@@ -21,8 +21,8 @@
     opacity: 0.8;
     background-color: #FFFFFF;
     position: absolute;
-    width: 40vw;
-    height: 55vh;
+    width: 30vw;
+    height: 70vh;
     border-radius: 50px;
 }
 
@@ -64,11 +64,11 @@
 .ad-add-title {
     color: orange;
     font-weight: 400;
+    margin-top: 2vh;
     text-align: center;
 }
 
 .ad-add-content {
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -130,11 +130,21 @@
     border: 0 solid;
     background: transparent;
     margin-top: 1vh;
-    margin-left: 2vw;
+    margin-left: 0.5vw;
     width: 90% !important;
 }
 
-.viewing-inputs input {
+.main-info-input {
+    display: flex;
+    margin-left: 3vw;
+}
+
+.main-info-input div {
+    display: flex;
+    align-items: center;
+}
+
+.viewing-inputs input  {
     display: block;
     font-family: Poppins, serif;
     font-size: large;
@@ -165,4 +175,22 @@
 
 .width-100-percent {
     width: 100%;
+}
+
+.text-location {
+    text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgb(133, 133, 133);
+  display: block;
+    font-family: Poppins, serif;
+    font-size: large;
+    
+
+    margin-left: 1vw;
+    margin-top: 1vh;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    text-align: center !important;
+    padding: 0;
 }
