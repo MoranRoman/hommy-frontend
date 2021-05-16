@@ -50,7 +50,6 @@ const AdPage = ({ history, isViewing }) => {
   }, [ad, form])
 
   const handleSubmit = async (e) => {
-    console.log(e)
     try {
       const config = {
         headers: {
@@ -61,6 +60,9 @@ const AdPage = ({ history, isViewing }) => {
 
       const formData = new FormData()
       formData.append('housePhoto', mainPhotoFile)
+      formData.append('waterSupply', e.waterSupply)
+      formData.append('heating', e.heating)
+      formData.append('warming', e.warming)
       formData.append('description', e.description)
       formData.append('houseType', e.houseType)
       formData.append('location', e.location)
@@ -104,6 +106,7 @@ const AdPage = ({ history, isViewing }) => {
       setLocation([country, state, city, district, street, houseNumber].join(', '))
       setIsModalVisible(false)
     }
+    form.setFieldsValue({ location: [country, state, city, district, street, houseNumber].join(', ') })
   }
 
   const handleCancelModal = () => {
@@ -236,23 +239,6 @@ const AdPage = ({ history, isViewing }) => {
                 <Option value="Thermoblock">Thermoblock</Option>
                 <Option value="Basalt Wool">Basalt Wool</Option>
                 <Option value="Styrofoam">Styrofoam</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item name="walls" rules={[{ required: true, message: renderTooltip('Walls is required') }]}>
-              <Select placeholder="Walls" allowClear>
-                <Option value="Brick">Brick</Option>
-                <Option value="Gas Block">Gas Block</Option>
-                <Option value="Ceramic Block">Ceramic Block</Option>
-              </Select>
-            </Form.Item>
-            <Form.Item
-              name="closedArea"
-              rules={[{ required: true, message: renderTooltip('Closed Area is required') }]}
-            >
-              <Select placeholder="Closed Area" allowClear>
-                <Option value="Yes">Yes</Option>
-                <Option value="No">No</Option>
-                <Option value="Yes, guarded">Yes, guarded</Option>
               </Select>
             </Form.Item>
             <Form.Item name="squares" rules={[{ required: true, message: renderTooltip('Squares are required') }]}>
