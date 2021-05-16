@@ -4,3 +4,13 @@
     left: 28px;
     top: 8px;
 }
+
+.ant-input {
+border-radius: 10px;
+border: none;
+}
+
+.ant-select-selector {
+    border-radius: 10px;
+border: none;
+}
