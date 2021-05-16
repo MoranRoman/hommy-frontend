@@ -3,11 +3,11 @@ import { useAlert } from 'react-alert'
 import { Form, InputNumber, Select, Upload, Tooltip, Modal, Input } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import axios from 'axios'
+
 import requester from '../../factories'
 import MapPicker from '../../components/MapPicker'
 
 import './index.css'
-import { couldStartTrivia } from 'typescript'
 
 const { Dragger } = Upload
 const { Option } = Select
@@ -19,10 +19,10 @@ const AdPage = ({ history, isViewing }) => {
   const [mainPhotoSrc, setMainPhotoSrc] = useState()
   const [mainPhotoFile, setMainPhotoFile] = useState()
   const [ad, setAd] = useState()
-
   const [location, setLocation] = useState('Location')
   const [currentPos, setCurrentPos] = useState()
   const [isModalVisible, setIsModalVisible] = useState(false)
+
   const adId = history.location.pathname.split('/')[2]
 
   useEffect(() => {
@@ -115,6 +115,7 @@ const AdPage = ({ history, isViewing }) => {
   const addLocation = () => {
     setIsModalVisible(true)
   }
+
   const props = {
     name: 'mainPhoto',
     multiple: false,
@@ -180,7 +181,9 @@ const AdPage = ({ history, isViewing }) => {
                   rules={[{ required: true, message: renderTooltip('Location address is required') }]}
                 >
                   <Tooltip title={location}>
-                    <div className="text-location">{location}</div>
+                    <div className="text-location">
+                      <span>{location}</span>
+                    </div>
                   </Tooltip>
                 </Form.Item>
               </div>

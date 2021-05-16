@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom'
 import requester from '../../factories'
 import './index.css'
 
-const HouseCard = ({ id, photoUrl, houseType, location, price, Likes, unlike }) => {
+const HouseCard = ({ id, photoUrl, houseType, location, price, Likes, unlike, isOwner }) => {
   const history = useHistory()
   const [liked, setLiked] = useState(!!Likes?.length)
+
   const like = () => {
     setLiked(!liked)
     requester(`POST`, `${process.env.REACT_APP_API_BACKEND_URL}/houses/like`, { houseId: id }, {}, history)
@@ -14,20 +15,19 @@ const HouseCard = ({ id, photoUrl, houseType, location, price, Likes, unlike }) 
       unlike(id)
     }
   }
-  const viewHouse = () => {
-    history.push(`/view-advertisement/${id}`)
-  }
+
+  const viewHouse = () => history.push(`/view-advertisement/${id}`)
+
+  const updateHouse = () => history.push(`/update-advertisement/${id}`)
 
   return (
     <div className="main-card">
       <div className="card-content">
-        <div className="card-content-header" onClick={viewHouse}>
-          {/* <img alt="" src={(photoUrl?.length && photoUrl[0]) || require('../../assets/images/home_house_3526.ico')} /> */}
+        <div className="card-content-header" onClick={isOwner ? updateHouse : viewHouse}>
           <img alt="" src={(photoUrl?.length && photoUrl[0]) || require('../../assets/images/housedefault.jpg')} />
         </div>
         <div className="card-house-type">
           <h3>{houseType}</h3>
-          {/* <img src={require('../../assets/images/like.svg')} width="30" height="30" alt="" /> */}
           <svg
             onClick={like}
             width="30"

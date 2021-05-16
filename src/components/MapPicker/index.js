@@ -1,6 +1,8 @@
 import React from 'react'
 import { MapContainer, TileLayer, Marker, useMapEvents, Popup } from 'react-leaflet'
+
 import { Icon } from './icon'
+
 import './index.css'
 
 const Markers = (props) => {

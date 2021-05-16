@@ -45,7 +45,8 @@
     "uuid": "^8.3.0"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "set PORT=3001 && craco start",
+    "start-linux": "PORT=3001 craco start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

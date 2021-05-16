@@ -7,7 +7,9 @@ import './index.css'
 const FavouritesPage = () => {
   const [houses, setHouses] = useState([])
   const [loading, setLoading] = useState(false)
-  const limit = parseInt((window.innerWidth * 0.86) / 300) * 4
+
+  const limit = parseInt((window.innerWidth * 0.86) / 300, 10) * 4
+
   useEffect(() => {
     const fetchHouses = async () => {
       const data = await requester(
@@ -20,10 +22,11 @@ const FavouritesPage = () => {
     document.querySelector('body').style.backgroundImage = `url("${backgroundImage}")`
     fetchHouses()
   }, [limit])
+
   const unlikeHouse = (id) => {
-    console.log(id)
     setHouses(houses.filter((house) => house.id !== id))
   }
+
   const loadMoreHouses = async () => {
     setLoading(true)
     const data = await requester(
@@ -33,12 +36,13 @@ const FavouritesPage = () => {
     setHouses([...houses, ...data])
     setLoading(false)
   }
+
   return (
     <div className="favourites-main">
       <h2>Favourites</h2>
 
       <div className="favourites-main-cards">
-        {houses.length > 0 ? (
+        {houses?.length ? (
           <>
             {houses.map((house) => (
               <HouseCard key={house.id} {...house} unlike={unlikeHouse} />
@@ -47,7 +51,7 @@ const FavouritesPage = () => {
         ) : (
           <Spin size="large" />
         )}
-        {houses.length > 0 && (
+        {houses?.length && (
           <>
             {!loading ? (
               <div className="load-more">
