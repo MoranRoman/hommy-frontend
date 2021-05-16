@@ -1,3 +1,7 @@
+.side-filter .ant-select-single.ant-select-show-arrow .ant-select-selection-placeholder {
+    color: #bfbfbf !important;
+}
+
 .double-right-svg {
     cursor: pointer;
     position: absolute;
@@ -5,12 +9,18 @@
     top: 8px;
 }
 
-.ant-input {
-border-radius: 10px;
-border: none;
+.side-filter .ant-input-affix-wrapper {
+    border-radius: 10px !important;
+    border: none !important;
 }
 
-.ant-select-selector {
-    border-radius: 10px;
-border: none;
+.side-filter .ant-select-selector {
+    border-radius: 10px !important;
+    border: none !important;
+}
+
+.side-filter .ant-form-item-control-input-content {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }

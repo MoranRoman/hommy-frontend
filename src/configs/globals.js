@@ -1,1 +1,1 @@
-export const adsFiltersNames = ['city', 'houseType']
+export const adsFiltersNames = ['city', 'houseType', 'waterSupply', 'heating', 'warming']

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Spin } from 'antd'
 
 import HouseCard from '../../components/HouseCard'
+import SideAdsFilter from '../../components/SideAdsFilter'
 import requester from '../../factories'
+import { modifyStringWithQueryParams } from '../../factories/location'
 
 import './index.css'
 
@@ -12,33 +14,39 @@ const MyAdsPage = () => {
 
   const limit = parseInt((window.innerWidth * 0.94) / 300, 10) * 4
 
-  useEffect(() => {
-    const fetchHouses = async () => {
-      const data = await requester(
-        `GET`,
-        `${process.env.REACT_APP_API_BACKEND_URL}/houses/my-houses?limit=${limit}&offset=0`,
-      )
-      setHouses(data)
-    }
+  const fetchHouses = async () => {
+    const data = await requester(
+      `GET`,
+      modifyStringWithQueryParams(`${process.env.REACT_APP_API_BACKEND_URL}/houses/my-houses?limit=${limit}&offset=0`),
+    )
+    setHouses(data)
+  }
 
+  useEffect(() => {
     const backgroundImage = require('../../assets/images/catalog-background.jpg')
     document.querySelector('body').style.backgroundImage = `url("${backgroundImage}")`
 
     fetchHouses()
+    // eslint-disable-next-line
   }, [limit])
 
   const loadMoreHouses = async () => {
     setLoading(true)
+
     const data = await requester(
       `GET`,
-      `${process.env.REACT_APP_API_BACKEND_URL}/houses/my-houses/?limit=${limit}&offset=${houses.length}`,
+      modifyStringWithQueryParams(
+        `${process.env.REACT_APP_API_BACKEND_URL}/houses/my-houses/?limit=${limit}&offset=${houses.length}`,
+      ),
     )
+
     setHouses([...houses, ...data])
     setLoading(false)
   }
 
   return (
     <div className="my-ads-main">
+      <SideAdsFilter handleSearch={fetchHouses} />
       <h2>Your Ads</h2>
       <div className="my-ads-main-cards">
         {houses?.length ? (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
-import { Form, InputNumber, Select, Upload, Tooltip, Modal, Input } from 'antd'
+import { Form, Select, Upload, Tooltip, Modal, Input } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import axios from 'axios'
 
@@ -36,6 +36,7 @@ const AdPage = ({ history, isViewing }) => {
 
       if (!data) history.push('/404')
 
+      setLocation(data?.location)
       setAd(data)
     }
 
@@ -113,7 +114,7 @@ const AdPage = ({ history, isViewing }) => {
     setIsModalVisible(false)
   }
   const addLocation = () => {
-    setIsModalVisible(true)
+    if (!isViewing) setIsModalVisible(true)
   }
 
   const props = {
@@ -175,7 +176,6 @@ const AdPage = ({ history, isViewing }) => {
                 <div>
                   <img src={require('../../assets/images/red-plus.svg')} width="30" height="30" alt="" />
                 </div>
-
                 <Form.Item
                   name="location"
                   rules={[{ required: true, message: renderTooltip('Location address is required') }]}
@@ -187,7 +187,6 @@ const AdPage = ({ history, isViewing }) => {
                   </Tooltip>
                 </Form.Item>
               </div>
-
               <div className="main-info-input">
                 <div>
                   <img src={require('../../assets/images/red-plus.svg')} width="30" height="30" alt="" />
@@ -214,7 +213,7 @@ const AdPage = ({ history, isViewing }) => {
           </div>
           <div className="secondary-info">
             <Form.Item name="houseType" rules={[{ required: true, message: renderTooltip('House type is required') }]}>
-              <Select placeholder="House type" allowClear>
+              <Select placeholder="House type" allowClear disabled={isViewing}>
                 <Option value="Plot">Plot</Option>
                 <Option value="Townhouse">Townhouse</Option>
                 <Option value="Cottage">Cottage</Option>
@@ -226,29 +225,29 @@ const AdPage = ({ history, isViewing }) => {
               name="waterSupply"
               rules={[{ required: true, message: renderTooltip('Water supply is required') }]}
             >
-              <Select placeholder="Water supply" allowClear>
+              <Select placeholder="Water supply" allowClear disabled={isViewing}>
                 <Option value="Centralized">Centralized</Option>
                 <Option value="Individual">Individual</Option>
               </Select>
             </Form.Item>
             <Form.Item name="heating" rules={[{ required: true, message: renderTooltip('Heating is required') }]}>
-              <Select placeholder="Heating" allowClear>
+              <Select placeholder="Heating" allowClear disabled={isViewing}>
                 <Option value="A Gas Boiler">A Gas Boiler</Option>
                 <Option value="Solid fuel Boiler">Solid fuel Boiler</Option>
               </Select>
             </Form.Item>
             <Form.Item name="warming" rules={[{ required: true, message: renderTooltip('Warming is required') }]}>
-              <Select placeholder="Warming" allowClear>
+              <Select placeholder="Warming" allowClear disabled={isViewing}>
                 <Option value="Thermoblock">Thermoblock</Option>
                 <Option value="Basalt Wool">Basalt Wool</Option>
                 <Option value="Styrofoam">Styrofoam</Option>
               </Select>
             </Form.Item>
             <Form.Item name="squares" rules={[{ required: true, message: renderTooltip('Squares are required') }]}>
-              <Input placeholder="Squares" />
+              <Input placeholder="Squares" disabled={isViewing} />
             </Form.Item>
             <Form.Item name="price" rules={[{ required: true, message: renderTooltip('Price is required') }]}>
-              <Input placeholder="Your price" />
+              <Input placeholder="Your price" disabled={isViewing} />
             </Form.Item>
           </div>
           {!isViewing && <button className="publicate-btn">{ad ? 'Update' : 'Publicate'}</button>}

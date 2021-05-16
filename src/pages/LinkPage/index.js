@@ -66,9 +66,9 @@ const LinkPage = ({ history }) => {
                 {user.name} {user.surname}
               </span>
             </div>
-            <Menu.Item key="my-advertisements">Advertisements</Menu.Item>
+            <Menu.Item key="/my-advertisements">Advertisements</Menu.Item>
             <Menu.Item key="/">Messages</Menu.Item>
-            <Menu.Item key="settings">Settings</Menu.Item>
+            <Menu.Item key="/settings">Settings</Menu.Item>
             <Menu.Item key="logout">Log out</Menu.Item>
           </SubMenu>
         </Menu>
@@ -175,9 +175,9 @@ const LinkPage = ({ history }) => {
                     {user.name} {user.surname}
                   </span>
                 </div>
-                <Menu.Item key="my-advertisements">Advertisements</Menu.Item>
+                <Menu.Item key="/my-advertisements">Advertisements</Menu.Item>
                 <Menu.Item key="/">Messages</Menu.Item>
-                <Menu.Item key="settings">Settings</Menu.Item>
+                <Menu.Item key="/settings">Settings</Menu.Item>
                 <Menu.Item key="logout">Log out</Menu.Item>
               </SubMenu>
             </Menu>

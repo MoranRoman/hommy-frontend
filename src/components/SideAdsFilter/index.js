@@ -68,18 +68,38 @@ const SideAdsFilter = ({ handleSearch }) => {
         closable
         onClose={() => setOpenDrawer(false)}
         visible={isOpenedDrawer}
+        className="side-filter"
       >
         <Form form={form} onValuesChange={handleFormChange} initialValues={filterObject} name="basic">
           <Form.Item name="city">
-            <Input placeholder="City" />
+            <Input placeholder="City" allowClear />
           </Form.Item>
           <Form.Item name="houseType">
-            <Select mode="multiple" allowClear placeholder="House Type">
+            <Select mode="multiple" allowClear placeholder="House type">
               <Option value="Plot">Plot</Option>
               <Option value="Townhouse">Townhouse</Option>
               <Option value="Cottage">Cottage</Option>
               <Option value="Quadrex">Quadrex</Option>
               <Option value="Duplex">Duplex</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="waterSupply">
+            <Select allowClear placeholder="Water supply">
+              <Option value="Centralized">Centralized</Option>
+              <Option value="Individual">Individual</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="heating">
+            <Select allowClear placeholder="Heating">
+              <Option value="A Gas Boiler">A Gas Boiler</Option>
+              <Option value="Solid fuel Boiler">Solid fuel Boiler</Option>
+            </Select>
+          </Form.Item>
+          <Form.Item name="warming">
+            <Select allowClear placeholder="Warming">
+              <Option value="Thermoblock">Thermoblock</Option>
+              <Option value="Basalt Wool">Basalt Wool</Option>
+              <Option value="Styrofoam">Styrofoam</Option>
             </Select>
           </Form.Item>
           <Form.Item>
