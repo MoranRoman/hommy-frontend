@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
-import { Form, InputNumber, Select, Upload, Tooltip, Modal } from 'antd'
+import { Form, InputNumber, Select, Upload, Tooltip, Modal, Input } from 'antd'
 import ImgCrop from 'antd-img-crop'
 import axios from 'axios'
 import requester from '../../factories'
@@ -50,6 +50,7 @@ const AdPage = ({ history, isViewing }) => {
   }, [ad, form])
 
   const handleSubmit = async (e) => {
+    console.log(e)
     try {
       const config = {
         headers: {
@@ -130,16 +131,8 @@ const AdPage = ({ history, isViewing }) => {
 
   return (
     <div className={`add-ad-global ${window.innerWidth <= 1100 ? 'ad-add-main-sm' : 'ad-add-main'}`}>
-      <Modal
-        title="Add location"
-        visible={isModalVisible}
-        width="60vh"
-        onOk={handleOkModal}
-        onCancel={handleCancelModal}
-      >
-        <div>
-          <MapPicker currentPos={currentPos} setCurrentPos={setCurrentPos} />
-        </div>
+      <Modal title="Add location" visible={isModalVisible} onOk={handleOkModal} onCancel={handleCancelModal}>
+        <MapPicker currentPos={currentPos} setCurrentPos={setCurrentPos} />
       </Modal>
       <h2 className="ad-add-title">
         {isViewing ? 'View an advertisement' : ad ? 'Update an advertisement' : 'Create an advertisement'}
@@ -213,43 +206,63 @@ const AdPage = ({ history, isViewing }) => {
               </div>
             </div>
           </div>
-          <div className={`secondary-info ${isViewing && 'viewing-inputs'}`}>
-            {!isViewing ? (
-              <>
-                <Form.Item
-                  name="houseType"
-                  rules={[{ required: true, message: renderTooltip('House type is required') }]}
-                >
-                  <Select placeholder="House type" allowClear>
-                    <Option value="Plot">Plot</Option>
-                    <Option value="Townhouse">Townhouse</Option>
-                    <Option value="Cottage">Cottage</Option>
-                    <Option value="Quadrex">Quadrex</Option>
-                    <Option value="Duplex">Duplex</Option>
-                  </Select>
-                </Form.Item>
-                <Form.Item name="squares" rules={[{ required: true, message: renderTooltip('Squares are required') }]}>
-                  <InputNumber min={1} max={99999} placeholder="Squares" />
-                </Form.Item>
-                <Form.Item name="price" rules={[{ required: true, message: renderTooltip('Price is required') }]}>
-                  <InputNumber
-                    formatter={(value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                    parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                    min={1}
-                    max={999999}
-                    placeholder="Your price"
-                  />
-                </Form.Item>
-              </>
-            ) : (
-              <div>
-                <input value={`House type: ${ad?.houseType}`} readOnly />
-                <input value={`Squares: ${ad?.squares}`} readOnly />
-                <input value={`Price: ${ad?.price}$`} readOnly />
-              </div>
-            )}
+          <div className="secondary-info">
+            <Form.Item name="houseType" rules={[{ required: true, message: renderTooltip('House type is required') }]}>
+              <Select placeholder="House type" allowClear>
+                <Option value="Plot">Plot</Option>
+                <Option value="Townhouse">Townhouse</Option>
+                <Option value="Cottage">Cottage</Option>
+                <Option value="Quadrex">Quadrex</Option>
+                <Option value="Duplex">Duplex</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="waterSupply"
+              rules={[{ required: true, message: renderTooltip('Water supply is required') }]}
+            >
+              <Select placeholder="Water supply" allowClear>
+                <Option value="Centralized">Centralized</Option>
+                <Option value="Individual">Individual</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item name="heating" rules={[{ required: true, message: renderTooltip('Heating is required') }]}>
+              <Select placeholder="Heating" allowClear>
+                <Option value="A Gas Boiler">A Gas Boiler</Option>
+                <Option value="Solid fuel Boiler">Solid fuel Boiler</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item name="warming" rules={[{ required: true, message: renderTooltip('Warming is required') }]}>
+              <Select placeholder="Warming" allowClear>
+                <Option value="Thermoblock">Thermoblock</Option>
+                <Option value="Basalt Wool">Basalt Wool</Option>
+                <Option value="Styrofoam">Styrofoam</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item name="walls" rules={[{ required: true, message: renderTooltip('Walls is required') }]}>
+              <Select placeholder="Walls" allowClear>
+                <Option value="Brick">Brick</Option>
+                <Option value="Gas Block">Gas Block</Option>
+                <Option value="Ceramic Block">Ceramic Block</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item
+              name="closedArea"
+              rules={[{ required: true, message: renderTooltip('Closed Area is required') }]}
+            >
+              <Select placeholder="Closed Area" allowClear>
+                <Option value="Yes">Yes</Option>
+                <Option value="No">No</Option>
+                <Option value="Yes, guarded">Yes, guarded</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item name="squares" rules={[{ required: true, message: renderTooltip('Squares are required') }]}>
+              <Input placeholder="Squares" />
+            </Form.Item>
+            <Form.Item name="price" rules={[{ required: true, message: renderTooltip('Price is required') }]}>
+              <Input placeholder="Your price" />
+            </Form.Item>
           </div>
-          {!isViewing && <button className="publicate-btn">{ad ? 'Change' : 'Publicate'}</button>}
+          {!isViewing && <button className="publicate-btn">{ad ? 'Update' : 'Publicate'}</button>}
         </div>
       </Form>
     </div>
